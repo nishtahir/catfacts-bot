@@ -1,0 +1,17 @@
+packages:
+    - name: app
+      shared: false
+      functions:
+        - name: catfacts
+          environment:
+            SERVER_URL: "${SERVER_URL}"
+            CAT_FACTS_APP_KEY: "${CAT_FACTS_APP_KEY}"
+            PALM_API_KEY: "${PALM_API_KEY}"
+          runtime: nodejs:18
+          web: false
+          webSecure: false
+          triggers:
+          - name: daily-catfact
+            sourceType: scheduler
+            sourceDetails:
+              cron: "0 12 * * *"
